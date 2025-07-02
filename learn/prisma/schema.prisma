@@ -1,0 +1,114 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String    @unique
+  password  String
+  isAdmin   Boolean   @default(false)
+  comments  Comment[] // 1 user → many comments
+  articles  Article[] // 1 user → many articles
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Article {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String
+  userId      Int
+  user        User      @relation(fields: [userId], references: [id])
+  comments    Comment[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Comment {
+  id        Int     @id @default(autoincrement())
+  content   String
+  articleId Int
+  userId    Int
+  article   Article @relation(fields: [articleId], references: [id])
+  user      User    @relation(fields: [userId], references: [id])
+}
+
+
+model Department {
+  id      Int   @id @default(autoincrement())
+  name    String
+  posts   Post[]
+  createdAt DateTime @default(now())
+}
+
+model Post {
+  id           Int     @id @default(autoincrement())
+  title        String
+  department   Department @relation(fields: [departmentId], references: [id])
+  departmentId Int
+  employees    Employee[]
+  createdAt DateTime @default(now())
+}
+
+model Employee {
+  id            Int            @id @default(autoincrement())
+  firstname     String
+  lastname      String
+  email         String         @unique
+  phone         String?
+  address       String?
+  password      String?
+  isAdmin       Boolean?        @default(false)
+  datedebut     DateTime
+  postId        Int
+  post          Post           @relation(fields: [postId], references: [id])
+  leaveRequests LeaveRequest[]
+}
+
+
+model LeaveType {
+  id           Int         @id @default(autoincrement())
+  name         String
+  maxDays      Int
+  carryForward Boolean        @default(false)
+  leaveRequests LeaveRequest[]
+  createdAt DateTime @default(now())
+}
+/*
+“Report des jours de congé non utilisés d’une année sur l’autre.”
+Si carryForward = true → les jours de congé non pris cette année peuvent être reportés à l’année suivante et utilisés plus tard.
+
+Si carryForward = false → les jours de congé non pris ne sont pas reportés, ils sont perdus à la fin de l’année.
+*/
+model LeaveRequest {
+  id           Int       @id @default(autoincrement())
+  employee     Employee     @relation(fields: [employeeId], references: [id])
+  employeeId   Int
+  leaveType    LeaveType    @relation(fields: [leaveTypeId], references: [id])
+  leaveTypeId  Int
+  startDate    DateTime
+  endDate      DateTime
+  reason       String?
+  status       LeaveStatus  @default(PENDING)
+  createdAt    DateTime     @default(now())
+  
+}
+
+enum LeaveStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
