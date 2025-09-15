@@ -54,8 +54,8 @@ const items = [
 
   
   {
-    title: "Settings",
-    url: "/admin/settings",
+    title: "salaires",
+    url: "/admin/salaries",
     icon: Settings,
   },
 ];

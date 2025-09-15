@@ -76,6 +76,7 @@ model Employee {
   postId        Int
   post          Post           @relation(fields: [postId], references: [id])
   leaveRequests LeaveRequest[]
+  salaires      Salaire[]
 }
 
 
@@ -106,7 +107,13 @@ model LeaveRequest {
   createdAt    DateTime     @default(now())
   
 }
-
+model Salaire {
+  id         Int      @id @default(autoincrement())
+  amount     Float
+  date       DateTime @default(now())
+  employeeId Int
+  employee   Employee @relation(fields: [employeeId], references: [id])
+}
 enum LeaveStatus {
   PENDING
   APPROVED
