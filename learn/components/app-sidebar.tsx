@@ -51,21 +51,7 @@ const items = [
     url: "/admin/LeaveRequest",
     icon: Calendar,
   },
-    {
-    title: "Leave Requests",
-    url: "/admin/LeaveRequest",
-    icon: Calendar,
-  },
-    {
-    title: "Leave Requests",
-    url: "/admin/LeaveRequest",
-    icon: Calendar,
-  },
-    {
-    title: "Leave Requests",
-    url: "/admin/LeaveRequest",
-    icon: Calendar,
-  },
+
   
   {
     title: "Settings",

@@ -23,8 +23,8 @@ import Link from "next/link";
 const items = [
   {
     title: "Dashboard",
-    url: "/empl",
-    icon: Home,
+    url: "/empl/dashboard",
+    icon: Calendar,
   },
   {
     title: "Congé",
@@ -50,7 +50,7 @@ export function AppSidebarEmp() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <Link href={item.url} className="flex items-center gap-2">
+                    <Link href={item.url} className="flex items-center gap-2 pt-10 hover:bg-gray-100 rounded">
                       <item.icon className="h-4 w-4" />
                       <span>{item.title}</span>
                     </Link>

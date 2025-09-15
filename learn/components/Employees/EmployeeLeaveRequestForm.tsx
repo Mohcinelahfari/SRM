@@ -104,7 +104,7 @@ export default function EmployeeLeaveRequestForm() {
   };
 
   return (
-    <Card className="max-w-2xl mx-8">
+    <Card className="">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <CalendarDays className="h-6 w-6 text-primary" />

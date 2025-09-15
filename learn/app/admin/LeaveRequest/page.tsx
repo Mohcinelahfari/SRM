@@ -176,7 +176,7 @@ export default function LeaveRequestManager() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="">
       <h1 className="text-2xl font-bold mb-4">Leave Requests</h1>
 
       <form onSubmit={handleSubmit} className="mb-6 border p-4 rounded-md shadow-sm space-y-4">

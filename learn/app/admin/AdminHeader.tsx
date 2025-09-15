@@ -28,7 +28,7 @@ export default function AdminHeader() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between px-4">
         <div className="flex items-center space-x-4">
-          <h1 className="text-lg font-semibold md:text-xl">Admin Dashboard</h1>
+          <h1 className="text-lg font-semibold md:text-xl"> Dashboard</h1>
           
           {/* Navigation pour desktop */}
           <nav className="hidden items-center space-x-6 text-sm font-medium md:flex">

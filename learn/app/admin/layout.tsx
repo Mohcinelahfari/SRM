@@ -28,7 +28,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <AdminHeader />
     <SidebarProvider>
       <AppSidebar />
-      <main>
+      <main className="container mx-auto px-4 py-8">
         <SidebarTrigger />
         {children}
       </main>

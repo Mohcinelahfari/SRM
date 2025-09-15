@@ -173,10 +173,12 @@ export default function AdminDashboard() {
                     <TableRow>
                       <TableHead>Name</TableHead>
                       <TableHead>Email</TableHead>
-                      <TableHead>Position</TableHead>
-                      <TableHead>Department</TableHead>
+                      <TableHead>Phone</TableHead>
+                      <TableHead>adrees</TableHead>
                       <TableHead>Status</TableHead>
                       <TableHead>Join Date</TableHead>
+                      <TableHead>Departement</TableHead>
+
                       <TableHead className="text-right">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
@@ -186,8 +188,9 @@ export default function AdminDashboard() {
                         <TableRow key={employee.id}>
                           <TableCell className="font-medium">{employee.name || '-'}</TableCell>
                           <TableCell>{employee.email || '-'}</TableCell>
-                          <TableCell>{employee.position || '-'}</TableCell>
-                          <TableCell>{employee.department || '-'}</TableCell>
+                          <TableCell>{employee.phone || '-'}</TableCell>
+                          <TableCell>{employee.address || '-'}</TableCell>
+
                           <TableCell>
                             <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                               employee.status === 'active'
@@ -200,10 +203,12 @@ export default function AdminDashboard() {
                             </span>
                           </TableCell>
                           <TableCell>
-                            {employee.joinDate ? 
-                              new Date(employee.joinDate).toLocaleDateString() : 
+                            {employee.datedebut ? 
+                              new Date(employee.datedebut).toLocaleDateString() : 
                               '-'}
                           </TableCell>
+                                                    <TableCell>{employee.post.title || '-'}</TableCell>
+
                           <TableCell className="text-right">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
